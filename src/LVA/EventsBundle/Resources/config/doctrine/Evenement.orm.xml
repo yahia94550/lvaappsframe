@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="LVA\EventsBundle\Entity\Evenement" table="evenements">
+    <indexes>
+      <index name="fk_evenements_univers1_idx" columns="univers_id"/>
+      <index name="fk_evenements_categories1_idx" columns="categories_id"/>
+      <index name="fk_evenements_rrules_idx" columns="rrule_id"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="id_UNIQUE" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nom" type="string" column="nom" length="95" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="organisateursId" type="integer" column="organisateurs_id" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+      </options>
+    </field>
+    <field name="adresse" type="string" column="adresse" length="95" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="villesId" type="integer" column="villes_id" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+      </options>
+    </field>
+    <field name="aCoteDe" type="string" column="a_cote_de" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="tel1" type="string" column="tel_1" length="15" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="tel2" type="string" column="tel_2" length="15" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="tel3" type="string" column="tel_3" length="15" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="fax" type="string" column="fax" length="15" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="email" type="string" column="email" length="95" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="participantsType" type="integer" column="participants_type" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="payantGratuit" type="boolean" column="payant_gratuit" nullable="true"/>
+    <field name="tarif" type="float" column="tarif" precision="10" scale="0" nullable="true"/>
+    <field name="commentaire" type="text" column="commentaire" length="65535" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="isToys" type="boolean" column="is_toys" nullable="false">
+      <options>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="orgaId" type="integer" column="orga_id" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+      </options>
+    </field>
+    <many-to-one field="categories" target-entity="Categorie" inversed-by="evenements" fetch="LAZY">
+      <join-columns>
+        <join-column name="categories_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="rrule" target-entity="Rrule" inversed-by="evenements" fetch="LAZY">
+      <join-columns>
+        <join-column name="rrule_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="univers" target-entity="Univer" inversed-by="evenements" fetch="LAZY">
+      <join-columns>
+        <join-column name="univers_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

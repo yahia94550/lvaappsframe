@@ -1,0 +1,9 @@
+lva_events_homepage:
+    path:     /
+    defaults: { _controller: LVAEventsBundle:Default:index }
+events_homepage:
+    path:     /events
+    defaults: { _controller: LVAEventsBundle:Event:index }
+events_add:
+    path:     /newevents
+    defaults: { _controller: LVAEventsBundle:Event:newevent }

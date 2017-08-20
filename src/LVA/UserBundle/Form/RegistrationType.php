@@ -5,6 +5,7 @@ namespace LVA\UserBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class RegistrationType extends AbstractType {
     
@@ -14,15 +15,13 @@ class RegistrationType extends AbstractType {
         $builder->add('prenom');
         $builder->add('adresse');
         $builder->add('tel');
-        $builder->add('civilite', CollectionType::class, array(
-                   'type' => 'choice',
-                   'options' => array(
-                       'choices' => array(
-                           'ROLE_ADMIN' => 'Admin',
-                           'ROLE_EDITOR' => 'Editor'
-                       )
-                   )
-               ));
+        $builder->add('civilite', ChoiceType::class, array(
+    'choices'  => array(
+        'Madame' => 'mme',
+        'Mademoiselle' => 'mlle',
+        'Monsieur' => 'mr',
+    ),
+));
         $builder->add('ville_id');
     }
 

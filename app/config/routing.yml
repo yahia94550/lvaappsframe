@@ -1,3 +1,7 @@
+lva_events:
+    resource: "@LVAEventsBundle/Resources/config/routing.yml"
+    prefix:   /
+
 lva_user:
     resource: "@LVAUserBundle/Resources/config/routing.yml"
     prefix:   /

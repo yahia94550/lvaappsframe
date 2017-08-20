@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/projectShare/lvaappsframe/app/config/security.yml</file>
+            <file>file:/D:/projectShare/lvaappsframe/var/logs/dev.log</file>
+            <file>file:/D:/projectShare/lvaappsframe/app/config/parameters.yml</file>
+            <file>file:/D:/projectShare/lvaappsframe/app/AppKernel.php</file>
+            <file>file:/D:/projectShare/lvaappsframe/src/LVA/EventsBundle/LVAEventsBundle.php</file>
+            <file>file:/D:/projectShare/lvaappsframe/src/LVA/EventsBundle/Resources/views/Event/newevent.html.twig</file>
+            <file>file:/D:/projectShare/lvaappsframe/composer.json</file>
+            <file>file:/D:/projectShare/lvaappsframe/src/LVA/UserBundle/Entity/User.php</file>
+            <file>file:/D:/projectShare/lvaappsframe/src/LVA/EventsBundle/Entity/Theme.php</file>
+            <file>file:/D:/projectShare/lvaappsframe/src/LVA/EventsBundle/Controller/DefaultController.php</file>
+            <file>file:/D:/projectShare/lvaappsframe/src/LVA/EventsBundle/Entity/Categorie.php</file>
+            <file>file:/D:/projectShare/lvaappsframe/src/LVA/EventsBundle/Resources/views/Event/index.html.twig</file>
+            <file>file:/D:/projectShare/lvaappsframe/app/config/routing.yml</file>
+            <file>file:/D:/projectShare/lvaappsframe/src/LVA/EventsBundle/Controller/EventController.php</file>
+            <file>file:/D:/projectShare/lvaappsframe/src/LVA/EventsBundle/Entity/Evenement.php</file>
+            <file>file:/D:/projectShare/lvaappsframe/app/config/config.yml</file>
+            <file>file:/D:/projectShare/lvaappsframe/src/LVA/EventsBundle/Resources/config/routing.yml</file>
+            <file>file:/D:/projectShare/lvaappsframe/src/LVA/UserBundle/Form/RegistrationType.php</file>
+            <file>file:/D:/projectShare/lvaappsframe/src/LVA/EventsBundle/Resources/views/Default/index.html.twig</file>
+        </group>
+    </open-files>
 </project-private>
