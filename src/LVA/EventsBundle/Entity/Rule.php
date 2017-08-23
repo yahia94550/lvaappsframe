@@ -1,11 +1,10 @@
 <?php
 
 namespace LVA\EventsBundle\Entity;
-//use RRule\RRule; 
 /**
  * Rrule
  */
-class Rrule
+class Rule
 {
     /**
      * @var string
@@ -110,7 +109,7 @@ class Rrule
      *
      * @param string $dtstart
      *
-     * @return Rrule
+     * @return Rule
      */
     public function setDtstart($dtstart)
     {
@@ -134,7 +133,7 @@ class Rrule
      *
      * @param integer $intervall
      *
-     * @return Rrule
+     * @return Rule
      */
     public function setIntervall($intervall)
     {
@@ -158,7 +157,7 @@ class Rrule
      *
      * @param string $wkst
      *
-     * @return Rrule
+     * @return Rule
      */
     public function setWkst($wkst)
     {
@@ -182,7 +181,7 @@ class Rrule
      *
      * @param integer $countt
      *
-     * @return Rrule
+     * @return Rule
      */
     public function setCountt($countt)
     {
@@ -206,7 +205,7 @@ class Rrule
      *
      * @param string $untill
      *
-     * @return Rrule
+     * @return Rule
      */
     public function setUntill($untill)
     {
@@ -230,7 +229,7 @@ class Rrule
      *
      * @param string $bymonth
      *
-     * @return Rrule
+     * @return Rule
      */
     public function setBymonth($bymonth)
     {
@@ -254,7 +253,7 @@ class Rrule
      *
      * @param string $byweekno
      *
-     * @return Rrule
+     * @return Rule
      */
     public function setByweekno($byweekno)
     {
@@ -278,7 +277,7 @@ class Rrule
      *
      * @param string $byyearday
      *
-     * @return Rrule
+     * @return Rule
      */
     public function setByyearday($byyearday)
     {
@@ -302,7 +301,7 @@ class Rrule
      *
      * @param string $bymonthday
      *
-     * @return Rrule
+     * @return Rule
      */
     public function setBymonthday($bymonthday)
     {
@@ -326,7 +325,7 @@ class Rrule
      *
      * @param string $byday
      *
-     * @return Rrule
+     * @return Rule
      */
     public function setByday($byday)
     {
@@ -350,7 +349,7 @@ class Rrule
      *
      * @param string $byhour
      *
-     * @return Rrule
+     * @return Rule
      */
     public function setByhour($byhour)
     {
@@ -374,7 +373,7 @@ class Rrule
      *
      * @param string $byminute
      *
-     * @return Rrule
+     * @return Rule
      */
     public function setByminute($byminute)
     {
@@ -398,7 +397,7 @@ class Rrule
      *
      * @param string $bysecond
      *
-     * @return Rrule
+     * @return Rule
      */
     public function setBysecond($bysecond)
     {
@@ -422,7 +421,7 @@ class Rrule
      *
      * @param string $bysetpos
      *
-     * @return Rrule
+     * @return Rule
      */
     public function setBysetpos($bysetpos)
     {
@@ -446,7 +445,7 @@ class Rrule
      *
      * @param string $exdate
      *
-     * @return Rrule
+     * @return Rule
      */
     public function setExdate($exdate)
     {
@@ -470,7 +469,7 @@ class Rrule
      *
      * @param string $freq
      *
-     * @return Rrule
+     * @return Rule
      */
     public function setFreq($freq)
     {
@@ -502,11 +501,11 @@ class Rrule
     /**
      * Add rrule
      *
-     * @param \LVA\EventsBundle\Entity\Rrule $rrule
+     * @param \LVA\EventsBundle\Entity\Rule $rrule
      *
-     * @return Rrule
+     * @return Rule
      */
-    public function addRrule(\LVA\EventsBundle\Entity\Rrule $rrule)
+    public function addRrule(\LVA\EventsBundle\Entity\Rule $rrule)
     {
         $this->rrules[] = $rrule;
 
@@ -516,9 +515,9 @@ class Rrule
     /**
      * Remove rrule
      *
-     * @param \LVA\EventsBundle\Entity\Rrule $rrule
+     * @param \LVA\EventsBundle\Entity\Rule $rrule
      */
-    public function removeRrule(\LVA\EventsBundle\Entity\Rrule $rrule)
+    public function removeRrule(\LVA\EventsBundle\Entity\Rule $rrule)
     {
         $this->rrules->removeElement($rrule);
     }
@@ -531,12 +530,6 @@ class Rrule
     public function getRrules()
     {
         return $this->rrules;
-    }
-    
-    public function getParent()
-    {
-        return 'RRule\RRule';
-
     }
 }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="LVA\EventsBundle\Entity\Rrule" table="rrules">
+  <entity name="LVA\EventsBundle\Entity\Rule" table="rrules">
     <unique-constraints>
       <unique-constraint name="id_UNIQUE" columns="id"/>
     </unique-constraints>
@@ -87,7 +87,7 @@
         <option name="fixed"/>
       </options>
     </field>
-	<one-to-many field="rrules" target-entity="Rrule" mapped-by="evenements">
+	<one-to-many field="rrules" target-entity="Rule" mapped-by="evenements">
         <cascade>
             <cascade-persist/>
             <cascade-remove/>

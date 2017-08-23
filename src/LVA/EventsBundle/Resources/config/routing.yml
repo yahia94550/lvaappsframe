@@ -5,5 +5,13 @@ events_homepage:
     path:     /events
     defaults: { _controller: LVAEventsBundle:Event:index }
 events_add:
-    path:     /newevents
+    path:     /events/newevent
     defaults: { _controller: LVAEventsBundle:Event:newevent }
+    
+category_homepage:
+    path:     /category
+    defaults: { _controller: LVAEventsBundle:Categorie:index }
+    
+add_category:
+    path:     /category/add
+    defaults: { _controller: LVAEventsBundle:Categorie:add }

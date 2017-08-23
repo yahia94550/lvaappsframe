@@ -3,14 +3,17 @@
 namespace LVA\EventsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Doctrine\ORM\EntityRepository ;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType; 
 use LVA\EventsBundle\Entity\Evenement;
 use LVA\EventsBundle\Entity\Categorie ;
 use LVA\EventsBundle\Entity\Univer ;
 use Symfony\Component\HttpFoundation\Request;
-use LVA\EventsBundle\Entity\Rrule ;
-//use RRule\RRule;
+use LVA\EventsBundle\Entity\Rule ;
+use RRule\RRule;
 use RRule\RSet ;
 /**
  * Description of EventController
@@ -32,48 +35,59 @@ class EventController extends Controller {
       ));
     }
     public function newEventAction(Request $request){
+        $doctrine = $this->getDoctrine();
+        $catEntityRepository = $doctrine->getRepository('LVAEventsBundle:Categorie', 'lvaeventsmanager');
+        $categories = $catEntityRepository->findAll();
+        /*foreach($categories as $cat){
+            echo $cat->getNom();
+        }
+        die;*/
         $categorie = new Categorie ();
-        $rrule = new Rrule();
+        $rrule = new Rule();
         $univers = new Univer();
-        $rrule = new RRule([
-	'FREQ' => 'MONTHLY',
-	'INTERVAL' => 1,
-	'DTSTART' => '2015-06-01',
-	'COUNT' => 6
-         ]);
         $evenement = new Evenement();
-        $evenement->setNom('mamanif');
-        $evenement->setOrganisateursId(1);
-        $evenement->setAdresse('mon adresse');
-        $evenement->setVillesId(2);
-        $evenement->setACoteDe('Bordeaux');
-        $evenement->setTel1('0122453565');
-        $evenement->setTel2('0122453565');
-        $evenement->setEmail('manif@gmail.com');
-        $evenement->setParticipantsType(1);
-        $evenement->setPayantGratuit(1);
-        $evenement->setTarif(200);
-        $evenement->setCategories($categorie->setNom('jouets'));
-        $evenement->setRrule($rrule->setFreq('MONTHLY'));
-        $evenement->setRrule($rrule->setIntervall(1));
-        $evenement->setRrule($rrule->setDtstart('2015-06-01'));
-        $evenement->setRrule($rrule->setCountt(6));
-        $evenement->setUnivers($univers->setNom('Automobiles'));
-
         $form = $this->createFormBuilder($evenement)
-            ->add('nom', HiddenType::class, array(
-    'data' => 'abcdef',
-))
-            ->add('adresse', StringType::class, array(
-    'widget' => 'choice',
-))
+            ->add('nom', TextType::class, array('label' => 'Nom'))
+            ->add('organisateursId', NumberType::class, array('label' => 'Organisateur') )
+            ->add('adresse', TextType::class, array('label' => 'Adresse'))
+            ->add('villesId', NumberType::class, array('label' => 'Ville'))
+            ->add('aCoteDe', TextType::class, array('label' => 'A coté De'))
+            ->add('Tel1', TextType::class, array('label' => 'Numéro de Télephone 1'))
+            ->add('Tel2', TextType::class, array('label' => 'Numéro de Télephone 2'))
+            ->add('Email', TextType::class, array('label' => 'Adresse Mail'))
+            ->add('categories', EntityType::class, array(
+                    'class' => 'LVAEventsBundle:Categorie',
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('u')
+                    ->orderBy('u.nom', 'ASC');
+                    },
+                    'choice_label' => 'nom',
+                ))
+            ->add('ParticipantsType', ChoiceType::class, 
+                    array(
+                        'label' => 'Type de participant',
+                        'choices' => 
+                        array(
+                             'Particulier' => false,
+                            'Professionnel' => true,
+                            ),
+                        )
+                    )
+            ->add('PayantGratuit', ChoiceType::class, 
+                    array(
+                            'label' => 'Type de manifestation',
+                            'choices' => 
+                            array(
+                                'Gratuite' => false,
+                                'Payante' => true,
+                            ),
+                        )
+                    )
+            ->add('save', SubmitType::class, array('label' => 'Enregistrer'))
             ->getForm();
 
-        return $this->render('AcmeTaskBundle:Default:new.html.twig', array(
-            'form' => $form->createView(),
+        return $this->render('LVAEventsBundle:Event:newevent.html.twig', array(
+            'formulaire' => $form->createView(),
         ));
-        
-        
-        return $this->render('LVAEventsBundle:Event:newevent.html.twig');
     }
 }

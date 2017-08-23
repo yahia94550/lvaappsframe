@@ -98,7 +98,7 @@ class Evenement
     private $categories;
 
     /**
-     * @var \LVA\EventsBundle\Entity\Rrule
+     * @var \LVA\EventsBundle\Entity\Rule
      */
     private $rrule;
 
@@ -529,11 +529,11 @@ class Evenement
     /**
      * Set rrule
      *
-     * @param \LVA\EventsBundle\Entity\Rrule $rrule
+     * @param \LVA\EventsBundle\Entity\Rule $rrule
      *
      * @return Evenement
      */
-    public function setRrule(\LVA\EventsBundle\Entity\Rrule $rrule = null)
+    public function setRrule(\LVA\EventsBundle\Entity\Rule $rrule = null)
     {
         $this->rrule = $rrule;
 
