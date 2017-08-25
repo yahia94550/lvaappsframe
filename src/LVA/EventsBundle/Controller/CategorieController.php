@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use LVA\EventsBundle\Entity\Categorie;
 use LVA\EventsBundle\Form\CategoryType ;
-use Doctrine\ORM\EntityRepository ;
 
 class CategorieController extends Controller {
     public function indexAction()

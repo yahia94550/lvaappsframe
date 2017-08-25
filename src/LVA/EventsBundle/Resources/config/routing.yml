@@ -15,3 +15,11 @@ category_homepage:
 add_category:
     path:     /category/add
     defaults: { _controller: LVAEventsBundle:Categorie:add }
+    
+univer_homepage:
+    path:     /univers
+    defaults: { _controller: LVAEventsBundle:Univer:index }
+    
+theme_homepage:
+    path:     /themes
+    defaults: { _controller: LVAEventsBundle:Theme:index }

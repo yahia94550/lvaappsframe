@@ -105,7 +105,7 @@ class Categorie
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCategories()
+    public function getCategorie()
     {
         return $this->categorie;
     }
