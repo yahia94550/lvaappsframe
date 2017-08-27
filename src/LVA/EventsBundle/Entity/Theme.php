@@ -18,17 +18,10 @@ class Theme
     private $id;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var \LVA\EventsBundle\Entity\Categorie
      */
-    private $categories;
+    private $categorie;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->categorie = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Set nom
@@ -65,37 +58,27 @@ class Theme
     }
 
     /**
-     * Add category
+     * Set categorie
      *
-     * @param \LVA\EventsBundle\Entity\Categorie $category
+     * @param \LVA\EventsBundle\Entity\Categorie $categorie
      *
      * @return Theme
      */
-    public function addCategory(\LVA\EventsBundle\Entity\Categorie $category)
+    public function setCategorie(\LVA\EventsBundle\Entity\Categorie $categorie = null)
     {
-        $this->categories[] = $category;
+        $this->categorie = $categorie;
 
         return $this;
     }
 
     /**
-     * Remove category
+     * Get categorie
      *
-     * @param \LVA\EventsBundle\Entity\Categorie $category
-     */
-    public function removeCategory(\LVA\EventsBundle\Entity\Categorie $category)
-    {
-        $this->categories->removeElement($category);
-    }
-
-    /**
-     * Get categories
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \LVA\EventsBundle\Entity\Categorie
      */
     public function getCategorie()
     {
-        return $this->categories;
+        return $this->categorie;
     }
 }
 

@@ -5,8 +5,8 @@ events_homepage:
     path:     /events
     defaults: { _controller: LVAEventsBundle:Event:index }
 events_add:
-    path:     /events/newevent
-    defaults: { _controller: LVAEventsBundle:Event:newevent }
+    path:     /events/add
+    defaults: { _controller: LVAEventsBundle:Event:add }
     
 category_homepage:
     path:     /category
@@ -23,3 +23,6 @@ univer_homepage:
 theme_homepage:
     path:     /themes
     defaults: { _controller: LVAEventsBundle:Theme:index }
+add_theme:
+    path:     /themes/add
+    defaults: { _controller: LVAEventsBundle:Theme:add }

@@ -2,9 +2,7 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="LVA\EventsBundle\Entity\Evenement" table="evenements">
     <indexes>
-      <index name="fk_evenements_univers1_idx" columns="univers_id"/>
-      <index name="fk_evenements_categories1_idx" columns="categories_id"/>
-      <index name="fk_evenements_rrules_idx" columns="rrule_id"/>
+      <index name="fk_evenements_rrules_idx" columns="rule_id"/>
     </indexes>
     <unique-constraints>
       <unique-constraint name="id_UNIQUE" columns="id"/>
@@ -17,7 +15,7 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="organisateursId" type="integer" column="organisateurs_id" nullable="false">
+    <field name="organisateurId" type="integer" column="organisateur_id" nullable="false">
       <options>
         <option name="unsigned">1</option>
       </options>
@@ -27,7 +25,7 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="villesId" type="integer" column="villes_id" nullable="false">
+    <field name="villeId" type="integer" column="ville_id" nullable="false">
       <options>
         <option name="unsigned">1</option>
       </options>
@@ -80,25 +78,30 @@
         <option name="default">0</option>
       </options>
     </field>
-    <field name="orgaId" type="integer" column="orga_id" nullable="false">
-      <options>
-        <option name="unsigned">1</option>
-      </options>
-    </field>
-    <many-to-one field="categories" target-entity="Categorie" inversed-by="evenements" fetch="LAZY">
+    <many-to-one field="rule" target-entity="Rule" fetch="LAZY">
       <join-columns>
-        <join-column name="categories_id" referenced-column-name="id"/>
+        <join-column name="rule_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="rrule" target-entity="Rule" inversed-by="evenements" fetch="LAZY">
-      <join-columns>
-        <join-column name="rrule_id" referenced-column-name="id"/>
-      </join-columns>
-    </many-to-one>
-    <many-to-one field="univers" target-entity="Univer" inversed-by="evenements" fetch="LAZY">
-      <join-columns>
-        <join-column name="univers_id" referenced-column-name="id"/>
-      </join-columns>
-    </many-to-one>
+    <many-to-many field="categorie" target-entity="Categorie" inversed-by="evenement" fetch="LAZY">
+      <join-table name="evenements_has_categories">
+        <join-columns>
+          <join-column name="evenement_id" referenced-column-name="id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="categorie_id" referenced-column-name="id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    <many-to-many field="univer" target-entity="Univer" inversed-by="evenement" fetch="LAZY">
+      <join-table name="univers_has_categories">
+        <join-columns>
+          <join-column name="evenement_id" referenced-column-name="id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="univer_id" referenced-column-name="id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
   </entity>
 </doctrine-mapping>

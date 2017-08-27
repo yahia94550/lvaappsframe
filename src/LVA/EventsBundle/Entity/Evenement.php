@@ -15,7 +15,7 @@ class Evenement
     /**
      * @var integer
      */
-    private $organisateursId;
+    private $organisateurId;
 
     /**
      * @var string
@@ -25,7 +25,7 @@ class Evenement
     /**
      * @var integer
      */
-    private $villesId;
+    private $villeId;
 
     /**
      * @var string
@@ -85,28 +85,30 @@ class Evenement
     /**
      * @var integer
      */
-    private $orgaId;
-
-    /**
-     * @var integer
-     */
     private $id;
-
-    /**
-     * @var \LVA\EventsBundle\Entity\Categorie
-     */
-    private $categories;
 
     /**
      * @var \LVA\EventsBundle\Entity\Rule
      */
-    private $rrule;
+    private $rule;
 
     /**
-     * @var \LVA\EventsBundle\Entity\Univer
+     * @var \Doctrine\Common\Collections\Collection
      */
-    private $univers;
+    private $categorie;
+    
+     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $univer;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->categorie = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Set nom
@@ -133,27 +135,27 @@ class Evenement
     }
 
     /**
-     * Set organisateursId
+     * Set organisateurId
      *
-     * @param integer $organisateursId
+     * @param integer $organisateurId
      *
      * @return Evenement
      */
-    public function setOrganisateursId($organisateursId)
+    public function setOrganisateurId($organisateurId)
     {
-        $this->organisateursId = $organisateursId;
+        $this->organisateurId = $organisateurId;
 
         return $this;
     }
 
     /**
-     * Get organisateursId
+     * Get organisateurId
      *
      * @return integer
      */
-    public function getOrganisateursId()
+    public function getOrganisateurId()
     {
-        return $this->organisateursId;
+        return $this->organisateurId;
     }
 
     /**
@@ -181,27 +183,27 @@ class Evenement
     }
 
     /**
-     * Set villesId
+     * Set villeId
      *
-     * @param integer $villesId
+     * @param integer $villeId
      *
      * @return Evenement
      */
-    public function setVillesId($villesId)
+    public function setVilleId($villeId)
     {
-        $this->villesId = $villesId;
+        $this->villeId = $villeId;
 
         return $this;
     }
 
     /**
-     * Get villesId
+     * Get villeId
      *
      * @return integer
      */
-    public function getVillesId()
+    public function getVilleId()
     {
-        return $this->villesId;
+        return $this->villeId;
     }
 
     /**
@@ -469,30 +471,6 @@ class Evenement
     }
 
     /**
-     * Set orgaId
-     *
-     * @param integer $orgaId
-     *
-     * @return Evenement
-     */
-    public function setOrgaId($orgaId)
-    {
-        $this->orgaId = $orgaId;
-
-        return $this;
-    }
-
-    /**
-     * Get orgaId
-     *
-     * @return integer
-     */
-    public function getOrgaId()
-    {
-        return $this->orgaId;
-    }
-
-    /**
      * Get id
      *
      * @return integer
@@ -503,75 +481,95 @@ class Evenement
     }
 
     /**
-     * Set categories
+     * Set rule
      *
-     * @param \LVA\EventsBundle\Entity\Categorie $categories
+     * @param \LVA\EventsBundle\Entity\Rule $rule
      *
      * @return Evenement
      */
-    public function setCategories(\LVA\EventsBundle\Entity\Categorie $categories = null)
+    public function setRule(\LVA\EventsBundle\Entity\Rule $rule = null)
     {
-        $this->categories = $categories;
+        $this->rule = $rule;
 
         return $this;
     }
 
     /**
-     * Get categories
+     * Get rule
      *
-     * @return \LVA\EventsBundle\Entity\Categorie
+     * @return \LVA\EventsBundle\Entity\Rule
      */
-    public function getCategories()
+    public function getRule()
     {
-        return $this->categories;
+        return $this->rule;
     }
 
     /**
-     * Set rrule
+     * Add categorie
      *
-     * @param \LVA\EventsBundle\Entity\Rule $rrule
+     * @param \LVA\EventsBundle\Entity\Categorie $categorie
      *
      * @return Evenement
      */
-    public function setRrule(\LVA\EventsBundle\Entity\Rule $rrule = null)
+    public function addCategorie(\LVA\EventsBundle\Entity\Categorie $categorie)
     {
-        $this->rrule = $rrule;
+        $this->categorie[] = $categorie;
 
         return $this;
     }
 
     /**
-     * Get rrule
+     * Remove categorie
      *
-     * @return \LVA\EventsBundle\Entity\Rrule
+     * @param \LVA\EventsBundle\Entity\Categorie $categorie
      */
-    public function getRrule()
+    public function removeCategorie(\LVA\EventsBundle\Entity\Categorie $categorie)
     {
-        return $this->rrule;
+        $this->categorie->removeElement($categorie);
     }
 
     /**
-     * Set univers
+     * Get categorie
      *
-     * @param \LVA\EventsBundle\Entity\Univer $univers
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+    
+    /**
+     * Add univer
+     *
+     * @param \LVA\EventsBundle\Entity\Univer $univer
      *
      * @return Evenement
      */
-    public function setUnivers(\LVA\EventsBundle\Entity\Univer $univers = null)
+    public function addUniver(\LVA\EventsBundle\Entity\Univer $univer)
     {
-        $this->univers = $univers;
+        $this->univer[] = $univer;
 
         return $this;
     }
 
     /**
-     * Get univers
+     * Remove univer
      *
-     * @return \LVA\EventsBundle\Entity\Univer
+     * @param \LVA\EventsBundle\Entity\Univer $univer
      */
-    public function getUnivers()
+    public function removeUniver(\LVA\EventsBundle\Entity\Univer $univer)
     {
-        return $this->univers;
+        $this->univer->removeElement($univer);
+    }
+
+    /**
+     * Get univer
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUniver()
+    {
+        return $this->univer;
     }
 }
 

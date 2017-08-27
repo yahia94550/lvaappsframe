@@ -18,21 +18,21 @@ class Univer
     private $id;
 
     /**
-     * @var \LVA\EventsBundle\Entity\Univer
+     * @var \Doctrine\Common\Collections\Collection
      */
-    private $univers;
-
+    private $categorie;
+    
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $categories;
+    private $evenement;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categorie = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -70,61 +70,71 @@ class Univer
     }
 
     /**
-     * Set univers
+     * Add categorie
      *
-     * @param \LVA\EventsBundle\Entity\Univer $univers
+     * @param \LVA\EventsBundle\Entity\Categorie $categorie
      *
      * @return Univer
      */
-    public function setUnivers(\LVA\EventsBundle\Entity\Univer $univers = null)
+    public function addCategorie(\LVA\EventsBundle\Entity\Categorie $categorie)
     {
-        $this->univers = $univers;
+        $this->categorie[] = $categorie;
 
         return $this;
     }
 
     /**
-     * Get univers
+     * Remove categorie
      *
-     * @return \LVA\EventsBundle\Entity\Univer
+     * @param \LVA\EventsBundle\Entity\Categorie $categorie
      */
-    public function getUnivers()
+    public function removeCategorie(\LVA\EventsBundle\Entity\Categorie $categorie)
     {
-        return $this->univers;
+        $this->categorie->removeElement($categorie);
     }
 
     /**
-     * Add category
-     *
-     * @param \LVA\EventsBundle\Entity\Categorie $category
-     *
-     * @return Univer
-     */
-    public function addCategory(\LVA\EventsBundle\Entity\Categorie $category)
-    {
-        $this->categories[] = $category;
-
-        return $this;
-    }
-
-    /**
-     * Remove category
-     *
-     * @param \LVA\EventsBundle\Entity\Categorie $category
-     */
-    public function removeCategory(\LVA\EventsBundle\Entity\Categorie $category)
-    {
-        $this->categories->removeElement($category);
-    }
-
-    /**
-     * Get categories
+     * Get categorie
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCategories()
+    public function getCategorie()
     {
-        return $this->categories;
+        return $this->categorie;
+    }
+    
+    /**
+     * Add evenement
+     *
+     * @param \LVA\EventsBundle\Entity\Evenement $evenement
+     *
+     * @return Univer
+     */
+    public function addEvenement(\LVA\EventsBundle\Entity\Evenement $evenement)
+    {
+        $this->evenement[] = $evenement;
+
+        return $this;
+    }
+
+    /**
+     * Remove evenement
+     *
+     * @param \LVA\EventsBundle\Entity\Evenement $evenement
+     */
+    public function removeEvenement(\LVA\EventsBundle\Entity\Evenement $evenement)
+    {
+        $this->evenement->removeElement($evenement);
+    }
+
+    /**
+     * Get evenement
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvenement()
+    {
+        return $this->evenement;
     }
 }
 

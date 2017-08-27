@@ -1,8 +1,9 @@
 <?php
 
 namespace LVA\EventsBundle\Entity;
+
 /**
- * Rrule
+ * Rule
  */
 class Rule
 {
@@ -91,18 +92,6 @@ class Rule
      */
     private $id;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $rrules;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->rrules = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Set dtstart
@@ -496,40 +485,6 @@ class Rule
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Add rrule
-     *
-     * @param \LVA\EventsBundle\Entity\Rule $rrule
-     *
-     * @return Rule
-     */
-    public function addRrule(\LVA\EventsBundle\Entity\Rule $rrule)
-    {
-        $this->rrules[] = $rrule;
-
-        return $this;
-    }
-
-    /**
-     * Remove rrule
-     *
-     * @param \LVA\EventsBundle\Entity\Rule $rrule
-     */
-    public function removeRrule(\LVA\EventsBundle\Entity\Rule $rrule)
-    {
-        $this->rrules->removeElement($rrule);
-    }
-
-    /**
-     * Get rrules
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getRrules()
-    {
-        return $this->rrules;
     }
 }
 

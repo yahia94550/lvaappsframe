@@ -7,36 +7,33 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="nom" type="string" column="nom" length="45" nullable="false">
+    <field name="nom" type="string" column="nom" length="95" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-	<one-to-many field="categories" target-entity="Categorie" mapped-by="evenements">
+    <one-to-many field="categorie" target-entity="Categorie" mapped-by="evenement">
         <cascade>
             <cascade-persist/>
             <cascade-remove/>
         </cascade>
     </one-to-many>
-    <many-to-many field="themes" target-entity="Theme" inversed-by="categories" fetch="LAZY">
-      <join-table name="categories_has_themes">
-        <join-columns>
-          <join-column name="categories_id" referenced-column-name="id"/>
-        </join-columns>
-        <inverse-join-columns>
-          <join-column name="themes_id" referenced-column-name="id"/>
-        </inverse-join-columns>
-      </join-table>
-    </many-to-many>
-    <many-to-many field="univers" target-entity="Univer" inversed-by="categories" fetch="LAZY">
+    <one-to-many field="catevent" target-entity="Theme" mapped-by="categorie">
+        <cascade>
+            <cascade-persist/>
+            <cascade-remove/>
+        </cascade>
+    </one-to-many>
+    <many-to-many field="univer" target-entity="Univer" inversed-by="categorie" fetch="LAZY">
       <join-table name="categories_has_univers">
         <join-columns>
-          <join-column name="categories_id" referenced-column-name="id"/>
+          <join-column name="categorie_id" referenced-column-name="id"/>
         </join-columns>
         <inverse-join-columns>
-          <join-column name="univers_id" referenced-column-name="id"/>
+          <join-column name="univer_id" referenced-column-name="id"/>
         </inverse-join-columns>
       </join-table>
     </many-to-many>
+    <many-to-many field="evenement" target-entity="Evenement" mapped-by="categorie" fetch="LAZY"/>
   </entity>
 </doctrine-mapping>
