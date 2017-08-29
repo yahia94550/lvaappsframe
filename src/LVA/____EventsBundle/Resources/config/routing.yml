@@ -26,10 +26,3 @@ theme_homepage:
 add_theme:
     path:     /themes/add
     defaults: { _controller: LVAEventsBundle:Theme:add }
-
-rule_homepage:
-    path:     /rules
-    defaults: { _controller: LVAEventsBundle:Rule:index }
-add_rule:
-    path:     /rules/add
-    defaults: { _controller: LVAEventsBundle:Rule:add }

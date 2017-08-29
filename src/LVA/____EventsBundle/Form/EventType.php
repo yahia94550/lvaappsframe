@@ -12,9 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Doctrine\ORM\EntityRepository ;
 use LVA\EventsBundle\Entity\Evenement;
 use LVA\EventsBundle\Entity\Categorie;
-
-
-
 class EventType extends AbstractType {
     
      public function buildForm(FormBuilderInterface $formBuilder, array $options)
@@ -34,11 +31,11 @@ class EventType extends AbstractType {
                     ->add('Tel1', TextType::class, array('label' => 'Numéro de Télephone 1'))
                     ->add('Tel2', TextType::class, array('label' => 'Numéro de Télephone 2', 'required' => false))
                     ->add('Email', TextType::class, array('label' => 'Adresse Mail'))
-                    /*->add('categorie', EntityType::class, array(
+                    ->add('categorie', EntityType::class, array(
                             'class' => 'LVAEventsBundle:Categorie',
                             'choice_label' => 'nom',
-                            'choice_value' => 'id', ////// un soucis iciiiiiiii //////
-                        ))*/
+                            'attr_value' => 'id', ////// un soucis iciiiiiiii //////
+                        ))
                     ->add('ParticipantsType', ChoiceType::class, 
                     array(
                         'label' => 'Type de participant',

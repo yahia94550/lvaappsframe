@@ -8,14 +8,9 @@ namespace LVA\EventsBundle\Entity;
 class Rule
 {
     /**
-     * @var Date
+     * @var string
      */
     private $dtstart;
-    
-    /**
-     * @var Date
-     */
-    private $dtend;
 
     /**
      * @var integer
@@ -101,7 +96,7 @@ class Rule
     /**
      * Set dtstart
      *
-     * @param date $dtstart
+     * @param string $dtstart
      *
      * @return Rule
      */
@@ -115,36 +110,11 @@ class Rule
     /**
      * Get dtstart
      *
-     * @return date
+     * @return string
      */
     public function getDtstart()
     {
         return $this->dtstart;
-    }
-    
-    /**
-     * Set dtend
-     *
-     * @param date $dtend
-     *
-     * @return Rule
-     */
-    
-    public function setDtend($dtend)
-    {
-        $this->dtend = $dtend;
-
-        return $this;
-    }
-
-    /**
-     * Get dtend
-     *
-     * @return date
-     */
-    public function getDtend()
-    {
-        return $this->dtend;
     }
 
     /**

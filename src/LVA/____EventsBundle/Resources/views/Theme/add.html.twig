@@ -1,0 +1,229 @@
+{# empty Twig template #}
+{# <html> 
+    <head>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <title>Calendar</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <style type="text/css">
+            * {
+            font-size: 11px; /* On définit les propriétés de texte pour toutes les balises. */
+            font-family: Tahoma, Verdana, Arial, serif;
+            }
+            a.info {
+                       position: relative;
+                       color: black;
+                       text-decoration: none;
+                       border-bottom: 1px gray dotted; /* On souligne le texte. */
+                    }
+            a.info span {
+               display: none; /* On masque l'infobulle. */
+            }
+            a.info:hover {
+               background: none; /* Correction d'un bug d'Internet Explorer. */
+               z-index: 500; /* On définit une valeur pour l'ordre d'affichage. */
+               cursor: help; /* On change le curseur par défaut par un curseur d'aide. */
+            }
+            a.info:hover span {
+               display: inline; /* On affiche l'infobulle. */
+               position: absolute;
+
+               white-space: nowrap; /* On change la valeur de la propriété white-space pour qu'il n'y ait pas de retour à la ligne non désiré. */
+
+               top: 30px; /* On positionne notre infobulle. */
+               left: 20px;
+
+               background: white;
+
+               color: green;
+               padding: 3px;
+
+               border: 1px solid green;
+               border-left: 4px solid green;
+            }
+        </style> 
+        <script>
+            $( function() {
+                $( "#datepicker" ).datepicker({dateFormat: "yymmdd"});
+                $( "#datepicker2" ).datepicker({dateFormat: "yymmdd"});
+                $( "#datepicker3" ).datepicker({dateFormat: "yymmdd"});
+                $( "#datepicker4" ).datepicker({dateFormat: "yymmdd"});
+                $("#datepicker1").datepicker( {
+                                    changeMonth: true,
+                                    changeYear: true,
+                                    showButtonPanel: true,
+                                    dateFormat: 'MM yy',
+                                    onClose: function(dateText, inst) {
+                                    $(this).datepicker('setDate', 
+                                    new Date(inst.selectedYear, inst.selectedMonth, 1));
+        }
+            } );
+    } )        
+            $(document).ready(function(){
+                $("input[name=periodic]").click(function(){
+                var bt = $('input[name=periodic]:checked').val();
+                console.log(bt);
+                if(bt == 'daily'){
+                    $("#dailydt").show();
+                    // la date de début doit être renseigner
+                    $("#datepicker").prop('required',true);
+                    // faire apparaitre le calendrier 
+                    // pour choisir une date unique
+                    $("#dailyuniqevent").show();
+                    // faire apparaitre le bouton valider
+                    $("#valid").show();           
+                    // si l'utilisateur avait déjà selectionner 
+                    // d'autres formules cacher les champs correspondants
+                    $("#dailyeventstart").hide(); 
+                    $("#dailyeventend").hide();   // .........
+                    $("#exdt").hide();            // .........
+                    $("#labeldays").hide();
+                    $("#days").hide();            // .........
+                    $("#month").hide();           // .........
+                    $("#daysrank").hide();
+                }else if(bt == 'daily1'){
+                    $("#dailydt").show();
+                    $("#datepicker").prop('required',true); // la date de début doit être renseigner
+                    $("#dailyeventstart").show(); // faire apparaitre le calendrier pour choisir une date de début
+                    $("#dailyeventend").show();   // faire apparaitre le calendrier pour choisir une date de fin
+                    $("#datepicker2").prop('required',true); // la date de fin doit être renseigner
+                    $("#exdt").show();            // faire apparaitre le calendrier pour choisir une date à exclure
+                    $("#valid").show();           // faire apparaitre le bouton valider
+                    $("#dailyuniqevent").hide();  // si l'utilisateur avait déjà selectionner d'autres formules cacher les champs correspondants
+                    $("#labeldays").hide();
+                    $("#days").hide();            // .........
+                    $("#month").hide();           // .........
+                    $("#daysrank").hide();
+                }else if(bt == 'weekly'){
+                    $("#labeldays").show();
+                    $("#dailydt").show();
+                    $("#dailyeventstart").show(); // faire apparaitre le calendrier pour choisir une date de début
+                    $("#dailyeventend").show();   // faire apparaitre le calendrier pour choisir une date de fin
+                    $("#labeldays").show();
+                    $("#days").show();            // faire apparaitre la liste des jours
+                    $("#month").show();           // faire apparaitre la liste des mois
+                    $("#exdt").show();            // faire apparaitre le calendrier pour choisir une date à exclure
+                    $("#valid").show();           // faire apparaitre le bouton valider
+                    $("#dailyuniqevent").hide();  // si l'utilisateur avait déjà selectionner d'autres formules cacher les champs correspondants
+                    $("#daysrank").hide();
+                }else if(bt == 'monthly'){
+                    $("#yearlydt").hide();
+                    $("#dailydt").hide();
+                    $("#dailydt").hide();
+                    $("#dailyeventstart").hide(); // faire apparaitre le calendrier pour choisir une date de début
+                    $("#dailyeventend").hide();   // faire apparaitre le calendrier pour choisir une date de fin
+                    $("#daysrank").show();
+                    $("#days").show();            // faire apparaitre la liste des jours
+                    $("#month").show();           // faire apparaitre la liste des mois
+                    $("#exdt").show();            // faire apparaitre le calendrier pour choisir une date à exclure
+                    $("#valid").show();           // faire apparaitre le bouton valider
+                    $("#dailyuniqevent").hide();  // si l'utilisateur avait déjà selectionner d'autres formules cacher les champs correspondants
+                }else if(bt == 'yearly'){
+                    $("#labeldays").hide();
+                    $("#dailyeventstart").hide(); // faire apparaitre le calendrier pour choisir une date de début
+                    $("#dailyeventend").hide();   // faire apparaitre le calendrier pour choisir une date de fin
+                    $("#daysrank").show();
+                    $("#days").show();            // faire apparaitre la liste des jours
+                    $("#month").show();           // faire apparaitre la liste des mois
+                    $("#yearlydt").show();           // faire apparaitre la liste des mois
+                    $("#exdt").show();            // faire apparaitre le calendrier pour choisir une date à exclure
+                    $("#valid").show();           // faire apparaitre le bouton valider
+                    $("#dailyuniqevent").hide();  // si l'utilisateur avait déjà selectionner d'autres formules cacher les champs correspondants
+                }
+            });
+        });
+        </script>       
+    </head>
+    <body>
+        <div class="container">
+        <form method="post" action="" >
+            <div class="period form-group">
+                <div class="row">
+                    <h4>Récurrence de l'évenement</h4>
+                    <div class="col col-md-2 form-group"><input type="radio" name="periodic" id="daily" value="daily"><a href="#" class="info">Date Unique<span><?= $oneshot ?></span></a></div> 
+                    <div class="col col-md-2 form-group"><input type="radio" name="periodic" id="daily" value="daily1"><a href="#" class="info">Journalier<span><?= $daily ?></span></a></div>
+                    <div class="col col-md-2 form-group"><input type="radio" name="periodic" id="weekly" value="weekly"><a href="#" class="info">Hebdomadaire<span><?=$weekly ?></span></a></div>
+                    <div class="col col-md-2 form-group"><input type="radio" name="periodic" id="monthly" value="monthly"><a href="#" class="info">Mensuel<span>évenement organiser tous les mois sur un ou plusieurs jours sur une période</span></a></div>
+                <!--    <div class="col col-md-2 form-group"><input type="radio" name="periodic" id="monthly1" value="monthly1"><a href="#" class="info">Toutes l'année<span>évenement organiser tous les mois sur un ou plusieurs jours toute l'année</span></a></div>-->
+                    <div class="col col-md-2 form-group"><input type="radio" name="periodic" id="yearly" value="yearly"><a href="#" class="info">Annuel<span>évenement organiser tous les ans sur un ou plusieurs jours</span></a></div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col col-md-3 form-group" id="dailydt" style="display: none;">
+                    <label id="dailyuniqevent">Date de l'évenement: </label>
+                    <label id="dailyeventstart">Date du début: </label>
+                    <input type="text" class="form-control" name="startdt" id="datepicker">
+                </div>
+                <div class="col col-md-3 form-group" id="dailyeventend" style="display: none;">
+                    <label>Date de fin: </label><input type="text" class="form-control" name="enddt" id="datepicker2">
+                </div>
+                <div class="col col-md-2 form-group" id="daysrank" style="display: none;">
+                    <label>Tous les : </label>
+                    <select multiple name="daysrank[]">
+                        <option value="1">Premier</option>
+                        <option value="2">Deuxième</option>
+                        <option value="3">Troixième</option>
+                    </select>
+                </div>
+                <div class="col col-md-2 form-group" id="days" style="display: none;">
+                    <label id="labeldays" style="display: none;">Tous les : </label>
+                    <select multiple name="days[]">
+                        <option value="MO">Lundi</option>
+                        <option value="TU">Mardi</option>
+                        <option value="WE">Mercredi</option>
+                        <option value="TH">Jeudi</option>
+                        <option value="FR">Vendredi</option>
+                        <option value="SA">Samedi</option>
+                        <option value="SU">Dimanche</option>
+                    </select>
+                </div>
+                <div class="col col-md-2 form-group" id="month" style="display: none;">
+                    <label> Du mois de :</label>
+                    <select name="months[]" multiple size="12">
+                        <option value="1">Janvier</option>
+                        <option value="2">Février</option>
+                        <option value="3">Mars</option>
+                        <option value="4">Avril</option>
+                        <option value="5">Mai</option>
+                        <option value="6">Juin</option>
+                        <option value="7">Juillet</option>
+                        <option value="8">Aout</option>
+                        <option value="9">Septembre</option>
+                        <option value="10">Octobre</option>
+                        <option value="11">Novembre</option>
+                        <option value="12">Décembre</option>
+                    </select>
+                </div>
+               <div class="col col-md-3 form-group" id="yearlydt" style="display: none;">
+                    <label>Année de fin: </label><input type="text" class="form-control" name="enddtyear" id="datepicker1">
+                </div>
+                <div class="col col-md-2 form-group" style="display: none;">
+                    De :  <input type="time" name="starttime2" class="form-control" id="starttime2"> 
+                    A  <input type="time" class="form-control" name="endtime2" id="endtime2">
+                </div>
+                <div class="col col-md-3 form-group" id="exdt" style="display: none;">
+                    <label>Date à exclure</label><input type="text" class="form-control" name="exdt" id="datepicker3">
+                </div>
+            </div>
+            <div class="row">
+                <div  id="valid" class="col-md-10 form-group"  style="display: none;">
+                    <input class="btn btn-default" type="submit" id="valider">
+                </div>  
+            </div> 
+            </form>   
+        </div>
+    </body>
+</html> #}
+{{form(addform)}}

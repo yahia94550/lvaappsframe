@@ -1,0 +1,7 @@
+<body>
+   {# {{ dump(resultats) }} #}
+   <h2>Liste des Themes</h2>
+{% for rule in resultats %}
+    <br> {{ rule.nom }}
+{% endfor %} 
+</body>
